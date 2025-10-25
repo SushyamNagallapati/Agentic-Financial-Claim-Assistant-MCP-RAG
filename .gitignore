@@ -1,0 +1,70 @@
+# --- Python artifacts ---
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.so
+*.egg
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+site/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Notebooks ---
+.ipynb_checkpoints/
+# (We keep *.ipynb files themselves in git)
+
+# --- Tests / tooling caches ---
+.pytest_cache/
+.coverage*
+htmlcov/
+.cache/
+.mypy_cache/
+.tox/
+.nox/
+.pyre/
+.pytype/
+.ruff_cache/
+
+# --- Logs ---
+logs/
+*.log
+
+# --- Env / secrets ---
+.env
+*.env
+*.env.*
+.envrc
+
+# --- Databases & local data stores ---
+*.db
+*.sqlite
+*.sqlite3
+# Vector stores / embeddings (Chroma/FAISS, etc.)
+**/chroma.sqlite3
+**/index.faiss
+**/index.pkl
+stores/
+datastore/
+
+# --- Project-specific sensitive files ---
+scotia.pdf
+
+# --- Editors / OS junk ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Cursor/other editor metadata ---
+.cursor/
