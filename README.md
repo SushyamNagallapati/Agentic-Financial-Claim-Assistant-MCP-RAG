@@ -1,4 +1,4 @@
-# Bankbot
+# Agentic Financial Claim Assistant
 Run LLAMA using :
 
 ollama run llama3.2
