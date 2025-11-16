@@ -261,7 +261,6 @@ from sqlalchemy import create_engine, inspect
 from typing import List, Optional, Union
 
 
-
 class SQLAgentState(TypedDict):
     #messages: List
     messages: Annotated[list, "reduce"]
@@ -952,4 +951,3 @@ async def chat_with_agent(request: ChatRequest, user=Depends(get_current_user)):
     except Exception as e:
         print("❌ ERROR:", e)
         raise HTTPException(status_code=500, detail=str(e))
-
