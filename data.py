@@ -16,7 +16,7 @@ def generate_uuid():
 def random_date(start, end):
     return start + timedelta(days=random.randint(0, (end - start).days))
 
-# --- Synthetic Data Generation ---
+# Synthetic Data Generation
 
 # 1. insurance_providers
 providers = [
@@ -51,6 +51,7 @@ for i, u in enumerate(users):
         datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         True
     ))
+    
 # Add one admin
 admin_id = generate_uuid()
 auth_users.append((
