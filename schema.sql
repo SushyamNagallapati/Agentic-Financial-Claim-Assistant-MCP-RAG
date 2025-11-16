@@ -9,7 +9,6 @@ CREATE TABLE users (
 );
 
 
-
 CREATE TABLE auth_users (
     user_id UUID PRIMARY KEY,
     username VARCHAR(100) UNIQUE,
@@ -20,13 +19,11 @@ CREATE TABLE auth_users (
 );
 
 
-
 CREATE TABLE insurance_providers (
     provider_id VARCHAR(50) PRIMARY KEY,
     name VARCHAR(100),
     description TEXT
 );
-
 
 
 CREATE TABLE provider_plans (
@@ -40,7 +37,6 @@ CREATE TABLE provider_plans (
     vision_limit DECIMAL(10,2),
     FOREIGN KEY (provider_id) REFERENCES insurance_providers(provider_id)
 );
-
 
 
 CREATE TABLE policies (
@@ -59,7 +55,6 @@ CREATE TABLE policies (
 );
 
 
-
 CREATE TABLE premium_payments (
     payment_id UUID PRIMARY KEY,
     policy_id UUID,
@@ -71,7 +66,6 @@ CREATE TABLE premium_payments (
     payment_method VARCHAR(50),
     FOREIGN KEY (policy_id) REFERENCES policies(policy_id)
 );
-
 
 
 CREATE TABLE claims (
@@ -93,7 +87,6 @@ CREATE TABLE claims (
 );
 
 
-
 CREATE TABLE dental_details (
     claim_id UUID PRIMARY KEY,
     category VARCHAR(50),
@@ -101,7 +94,6 @@ CREATE TABLE dental_details (
     procedure_code VARCHAR(20),
     FOREIGN KEY (claim_id) REFERENCES claims(claim_id)
 );
-
 
 
 CREATE TABLE drug_details (
@@ -114,7 +106,6 @@ CREATE TABLE drug_details (
 );
 
 
-
 CREATE TABLE hospital_visits (
     claim_id UUID PRIMARY KEY,
     room_type VARCHAR(50),
@@ -122,7 +113,6 @@ CREATE TABLE hospital_visits (
     discharge_date DATE,
     FOREIGN KEY (claim_id) REFERENCES claims(claim_id)
 );
-
 
 
 CREATE TABLE vision_claims (
