@@ -402,7 +402,6 @@ tools = [
 ]
 
 
-
 if __name__ == "__main__":
     logger = logging.getLogger(__name__)
     logger.info("Starting MCP server...")
