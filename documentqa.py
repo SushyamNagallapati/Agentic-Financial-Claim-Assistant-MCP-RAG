@@ -12,14 +12,14 @@ from typing import TypedDict, Annotated, Sequence
 from operator import add as add_messages
 from langchain_core.messages import BaseMessage
 
-# === LLM & VectorStore ===
+# LLM & VectorStore 
 llm = ChatOllama(model="llama3")
 
-#llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
+# llm = ChatOpenAI(model_name="gpt-4o", temperature=0)
 embeddings = HuggingFaceBgeEmbeddings(model_name="BAAI/bge-large-en", model_kwargs={"device": "cpu"})
 vectorstore = Chroma(persist_directory="stores/insurance_metadata_v4", embedding_function=embeddings)
 
-# === Prompt Templates ===
+# Prompt Templates
 step_back_prompt = PromptTemplate.from_template("""
 Identify the fundamental insurance concept needed to answer this question. Focus on general principles rather than specifics.
 
@@ -63,7 +63,7 @@ Score the confidence (0.0-1.0) using these STRICT criteria:
                                                  
 Provide ONLY the numeric score with no explanation:""")
 
-# === Utility Functions ===
+# Utility Functions
 def clean(text: str) -> str:
     text = ' '.join(text.split())
     text = re.sub(r'(\d)([a-zA-Z])', r'\1 \2', text)
@@ -77,7 +77,7 @@ def detect_plan(question: str):
             return p
     return None
 
-# === Agent Nodes ===
+# Agent Nodes
 def step_back_rag(state) -> dict:
     question = state["messages"][-1].content
     plan = detect_plan(question)
@@ -85,7 +85,7 @@ def step_back_rag(state) -> dict:
     docs = vectorstore.similarity_search(question, k=5, filter={"plan_type": plan} if plan else None)
     context = "\n\n".join([clean(d.page_content) for d in docs])
     print("context:",context)
-    #step_back = llm(step_back_prompt.format(question=question))
+    # step_back = llm(step_back_prompt.format(question=question))
     step_back = llm.invoke(step_back_prompt.format(question=question)).content
     print("step_back:",step_back)
     answer = llm.invoke(reasoning_prompt.format(context=context, 
@@ -130,8 +130,7 @@ def is_low_confidence(state) -> bool:
 
 
 
-
-# === Agent State ===
+# Agent State
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
     context_docs: list
